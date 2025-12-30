@@ -1,14 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
-    <title>Yi Jing Divination Tool</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>易經解卦小助手</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Yi Jing Divination Tool</h1>
-    <p>Focus on your question, then click the button to get a hexagram.</p>
-    <button id="divination-button">Cast Hexagram</button>
-    <div id="result"></div>
+    <header class="page-header">
+        <div class="title-block">
+            <p class="eyebrow">靜心、思考、提問</p>
+            <h1>易經解卦小助手</h1>
+            <p class="lede">透過三個心中浮現的數字與問題，生成靈感提示並提供卦象指引。</p>
+        </div>
+        <button id="prompt-button" class="ghost-button" type="button">生成提問靈感</button>
+    </header>
+
+    <main class="content">
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h2>準備你的提問</h2>
+                    <p class="muted">想像你最在意的情境，並輸入三個直覺浮現的數字（1-9）。</p>
+                </div>
+                <span class="badge">三步完成</span>
+            </div>
+            <form id="divination-form" class="form-grid">
+                <label class="field">
+                    <span>你的問題或情境</span>
+                    <textarea id="question" name="question" rows="3" placeholder="例：我是否適合接受這份新工作？" required></textarea>
+                </label>
+                <div class="numbers-group">
+                    <label class="field">
+                        <span>數字一</span>
+                        <input type="number" id="number-one" name="numberOne" min="1" max="9" required>
+                    </label>
+                    <label class="field">
+                        <span>數字二</span>
+                        <input type="number" id="number-two" name="numberTwo" min="1" max="9" required>
+                    </label>
+                    <label class="field">
+                        <span>數字三</span>
+                        <input type="number" id="number-three" name="numberThree" min="1" max="9" required>
+                    </label>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="primary">解卦</button>
+                    <button type="reset" class="ghost-button">清除重來</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="panel" id="prompt-panel" aria-live="polite">
+            <div class="panel-header">
+                <div>
+                    <h2>隨機提問靈感</h2>
+                    <p class="muted">如果還在猶豫，先看看這些能引發思考的情境。</p>
+                </div>
+            </div>
+            <p id="prompt-display" class="prompt-text">點擊上方按鈕，獲得一條新的提問靈感。</p>
+        </section>
+
+        <section class="panel" id="result-panel">
+            <div class="panel-header">
+                <div>
+                    <h2>解卦結果</h2>
+                    <p class="muted">呈現卦象名稱、含義與建議，協助你回應當下的課題。</p>
+                </div>
+            </div>
+            <div id="result" class="result"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>靜觀其變，善用指引，仍以你的智慧做決定。</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
