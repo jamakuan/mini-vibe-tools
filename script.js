@@ -87,23 +87,23 @@ function renderPrompt() {
     promptDisplay.textContent = prompt;
 }
 
-// 驗證並取得三個數字
+// 驗證並取得三個數字（0-999）
 function getNumbers() {
     const n1 = Number(document.getElementById("number-one").value);
     const n2 = Number(document.getElementById("number-two").value);
     const n3 = Number(document.getElementById("number-three").value);
 
-    if ([n1, n2, n3].some((n) => Number.isNaN(n) || n < 1 || n > 9)) {
+    if ([n1, n2, n3].some((n) => Number.isNaN(n) || n < 0 || n > 999)) {
         return null;
     }
 
     return [n1, n2, n3];
 }
 
-// 依照數字導出卦象索引
+// 依照易經取餘數的規則導出卦象索引
 function deriveHexagramIndex(numbers) {
-    const weightSum = numbers[0] * 13 + numbers[1] * 7 + numbers[2] * 3;
-    return weightSum % hexagrams.length;
+    const total = numbers.reduce((sum, value) => sum + value, 0);
+    return total % hexagrams.length;
 }
 
 // 呈現解卦結果
@@ -136,7 +136,7 @@ function setup() {
         }
 
         if (!numbers) {
-            alert("請輸入 1 至 9 之間的三個數字。");
+            alert("請輸入 0 至 999 之間的三個數字。");
             return;
         }
 
